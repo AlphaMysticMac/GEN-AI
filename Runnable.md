@@ -1,11 +1,9 @@
-Great question! In LangChain, Runnables are a core abstraction that help you build and orchestrate modular, composable AI pipelines. They allow components like models, chains, prompts, tools, and functions to be treated as callable units that can be executed synchronously or asynchronously.
+### Great question! In LangChain, Runnables are a core abstraction that help you build and orchestrate modular, composable AI pipelines. They allow components like models, chains, prompts, tools, and functions to be treated as callable units that can be executed synchronously or asynchronously.
 
-🔁 What is a Runnable in LangChain?
+### 🔁 What is a Runnable in LangChain?
 A Runnable is an object that supports a .invoke() method (for running it), and can be chained, mapped, batched, streamed, or composed with other Runnables.
 
-Think of Runnable as:
-
-A standard interface for "things you can run" in a LangChain pipeline — such as prompts, models, retrievers, tools, and chains.
+Think of Runnable as: A standard interface for "things you can run" in a LangChain pipeline — such as prompts, models, retrievers, tools, and chains.
 
 🔧 Key Types of Runnables
 LangChain provides several Runnable classes to structure workflows:
@@ -30,32 +28,30 @@ chain = prompt | model | parser  # All are Runnables
 result = chain.invoke({"question": "What is LangChain?"})
 Custom Logic with Lambda
 
-python
-Copy
-Edit
+<pre>python
+
 from langchain.schema.runnable import RunnableLambda
 custom_step = RunnableLambda(lambda x: x.upper())
 Branching
 
 python
-Copy
-Edit
+
 from langchain.schema.runnable import RunnableBranch
 
 branch = RunnableBranch(
     (lambda x: "urgent" in x["text"], urgent_chain),
     (lambda x: "low" in x["text"], low_priority_chain),
     default_chain
-)
+)</pre>
 ⚡️ Features of Runnables
-.invoke() – single input
+ - .invoke() – single input
 
-.batch() – multiple inputs
+- .batch() – multiple inputs
 
-.stream() – for streaming tokens (e.g., LLM output)
+- .stream() – for streaming tokens (e.g., LLM output)
 
-.transform() – generator-style processing
+- .transform() – generator-style processing
 
-.with_retry() – built-in retry mechanism
+- .with_retry() – built-in retry mechanism
 
-.with_fallbacks() – add backup strategies
+- .with_fallbacks() – add backup strategies
