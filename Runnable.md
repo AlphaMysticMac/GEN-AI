@@ -20,21 +20,18 @@ RunnableWithFallbacks	Uses fallback Runnables in case the first one fails.
 🔗 Common Use Cases
 Prompt + Model Pipeline
 
-python
-Copy
-Edit
+<pre>
 from langchain.schema.runnable import RunnableSequence
 chain = prompt | model | parser  # All are Runnables
 result = chain.invoke({"question": "What is LangChain?"})
 Custom Logic with Lambda
 
-<pre>python
+
 
 from langchain.schema.runnable import RunnableLambda
 custom_step = RunnableLambda(lambda x: x.upper())
 Branching
 
-python
 
 from langchain.schema.runnable import RunnableBranch
 
